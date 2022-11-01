@@ -7,6 +7,9 @@ const withVanillaExtract = createVanillaExtractPlugin();
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  eslint: {
+    ignoreDuringBuilds: true,
+  }
 }
 
 module.exports = withVanillaExtract(nextConfig);
