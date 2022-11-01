@@ -7,22 +7,11 @@ const Component: FC<Props> = ({
   columns,
   tasks,
   isAltVariant,
+  isElevating,
 }) => {
-  const [tableHeadIsElevating, setTableHeadIsElevating] = useState(false);
-
-  useEffect(() => {
-    const handleTableScroll = () => {
-      setTableHeadIsElevating(document.documentElement.scrollTop > 0)
-    }
-
-    document.addEventListener('scroll', handleTableScroll);
-
-    return () => document.removeEventListener('scroll', handleTableScroll);
-  }, [])
-
   return (
     <header className={classNames(styles.tableHead, {
-      [styles.tableHeadVariant.elevating]: tableHeadIsElevating
+      [styles.tableHeadVariant.elevating]: isElevating
     })}>
       {columns.map((column, index) => (
         <Fragment key={column.id}>

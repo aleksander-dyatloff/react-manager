@@ -1,4 +1,5 @@
 import { style, styleVariants } from "@vanilla-extract/css"
+import { color } from "../../../../styles/helpers"
 
 export const backdropButtonWrapper = style({
   position: 'fixed',
@@ -26,7 +27,7 @@ export const backdropButton = style({
   height: 80,
   margin: '0 auto',
   backdropFilter: 'blur(8px) saturate(180%)',
-  backgroundColor: 'rgba(239, 239, 239, 0.7)',
+  backgroundColor: color('backgroundPrimary', 0.7),
   boxShadow: '0 2px 6px 1px rgba(56, 56, 56, 0.3)',
   borderRadius: '50%',
   padding: '6px 25px 0',

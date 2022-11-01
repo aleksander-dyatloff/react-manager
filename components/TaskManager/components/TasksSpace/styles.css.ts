@@ -1,4 +1,5 @@
 import { style, styleVariants } from "@vanilla-extract/css";
+import { color } from "../../../../styles/helpers";
 
 export const tableSpace = style({
   display: 'flex',
@@ -34,7 +35,7 @@ export const spaceTitle = style({
 export const tableSpaceSticker = style({
   position: 'absolute',
   padding: '10px 0',
-  backgroundColor: '#efefef',
+  backgroundColor: color('backgroundPrimary'),
   borderRadius: 10,
   fontSize: 14,
   height: '100%',
@@ -58,7 +59,7 @@ export const tableSpaceStickerVariant = styleVariants({
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
     boxShadow: '0 4px 6px 1px rgba(56, 56, 56, 0.2)',
-    backgroundColor: 'rgb(244,244,244)',
+    backgroundColor: color('backgroundSecondary'),
   }]
 })
 
@@ -82,7 +83,7 @@ export const tableTask = style({
 export const tableColumnDivider = style({
   margin: '8px 0',
   width: 1,
-  backgroundColor: '#efefef',
+  backgroundColor: color('backgroundPrimary'),
 })
 
 export const spaceTask = style({

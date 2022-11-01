@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import User1Image from '../assets/users/1.png';
 import User2Image from '../assets/users/2.png';
@@ -6,6 +7,8 @@ import { Task } from '../components/Task/types';
 import TaskManager from '../components/TaskManager';
 import { Column, TasksSpace } from '../components/TaskManager/components/TasksSpace/types';
 import TextField from '../components/TextField';
+import GlobalContext from '../contexts/global';
+import { darkTheme, lightTheme } from '../styles/theme.css';
 import * as styles from './styles.css';
 
 const users = [
@@ -13,19 +16,19 @@ const users = [
     id: '1',
     firstName: 'Aleks',
     lastName: 'Dyatlov',
-    avatar: User1Image.src,
+    avatar: User1Image,
   },
   {
     id: '2',
     firstName: 'Diana',
     lastName: 'Lima',
-    avatar: User2Image.src,
+    avatar: User2Image,
   },
   {
     id: '3',
     firstName: 'Viacheslav',
     lastName: 'Sokolenkov',
-    avatar: User3Image.src,
+    avatar: User3Image,
   },
 ]
 
@@ -219,6 +222,7 @@ export default function Home() {
   const [isAltVariant, setIsAltVariant] = useState(false);
   const [tasks, setTasks] = useState<Task[]>(tasksData)
   const [closedSpaces, setClosedSpaces] = useState<Array<string | number>>([]);
+  const [isDarkTheme, setDarkTheme] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -243,7 +247,13 @@ export default function Home() {
   }, [])
 
   return (
-    <div className={styles.app}>
+    <GlobalContext.Provider value={{ isAltVariant, isDarkTheme }}>
+    <div className={classNames(styles.app, isDarkTheme ? darkTheme : lightTheme)}>
+      <div className={styles.navBar}>
+        <button onClick={() => setDarkTheme(!isDarkTheme)}>
+          {isDarkTheme ? 'Dark' : 'Light'}
+        </button>
+      </div>
       <div className={styles.tasksFilter}>
         <TextField placeholder='Search Task' />
       </div>
@@ -261,6 +271,7 @@ export default function Home() {
           else setClosedSpaces([...closedSpaces, spaceId])
         }}
       />      
-    </div>
+    </div>    
+    </GlobalContext.Provider>
   )
 }

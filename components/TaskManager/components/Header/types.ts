@@ -5,4 +5,5 @@ export interface Props {
   columns: Column[]
   tasks: Task[]
   isAltVariant?: boolean
+  isElevating?: boolean
 }

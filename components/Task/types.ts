@@ -1,3 +1,4 @@
+import { ImageProps, StaticImageData } from "next/image"
 import { MouseEventHandler } from "react"
 import { Column, TasksSpace } from "../TaskManager/components/TasksSpace/types"
 
@@ -9,8 +10,8 @@ export interface Task {
   description?: string
   assigner?: {
     firstName: string
-    lastName?: string
-    avatar?: string
+    lastName: string
+    avatar: StaticImageData
   }
   estimateTime?: number
   remainingTime?: number

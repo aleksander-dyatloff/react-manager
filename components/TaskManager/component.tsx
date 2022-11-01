@@ -1,4 +1,4 @@
-import { FC, Fragment } from "react";
+import { FC, Fragment, UIEventHandler, useState } from "react";
 import DraggableItem from "../DraggableItem";
 import DragZone from '../DragZone';
 import ElementPositionContainer from "../ElementPositionContainer";
@@ -10,6 +10,7 @@ import * as styles from './styles.css';
 import { Props } from "./types";
 
 const Component: FC<Props> = ({ columns = [], tasks = [], spaces = [], onTasksChange, closedSpaces, toggleCloseSpace, isAltVariant }) => {
+  const [headerIsElevating, setHeaderIsElevating] = useState(false);
   const spacesData = spaces.map((space, spaceIndex) => {
     const spaceTasks = tasks.filter(task => task.spaceId === space.id);
     const prevSpaceId = spaces[spaceIndex - 1]?.id
@@ -32,10 +33,14 @@ const Component: FC<Props> = ({ columns = [], tasks = [], spaces = [], onTasksCh
     })
   })
 
+  const handleTableScroll: UIEventHandler<HTMLElement> = (event) => {
+    setHeaderIsElevating(event.currentTarget.scrollTop > 0)  
+  }
+
   return (
     <DragZone render={(props) => (
-      <section className={styles.table} {...props}>
-        <Header isAltVariant={isAltVariant} tasks={tasks} columns={columns} />
+      <section onScroll={handleTableScroll} className={styles.table} {...props}>
+        <Header isElevating={headerIsElevating} isAltVariant={isAltVariant} tasks={tasks} columns={columns} />
         <ElementPositionContainer     
           className={styles.tableBody}
         >

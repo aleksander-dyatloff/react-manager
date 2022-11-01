@@ -1,4 +1,6 @@
 import { style, styleVariants } from "@vanilla-extract/css";
+import { color } from "../../../../styles/helpers";
+import { theme } from "../../../../styles/theme.css";
 
 export const tableHead = style({
   padding: '0 8px 0 40px',
@@ -17,7 +19,7 @@ export const tableHead = style({
 
 export const tableHeadVariant = styleVariants({
   elevating: [tableHead, {
-    backgroundColor: 'rgba(239, 239, 239, 0.7)',
+    backgroundColor: color('backgroundSecondary', 0.7),
     boxShadow: '0 0 6px 1px rgba(56, 56, 56, 0.3)',
     backdropFilter: 'blur(8px) saturate(180%)',
   }],
@@ -44,5 +46,5 @@ export const columnHeadAltText = style({
 export const tableColumnDivider = style({
   margin: '8px 0',
   width: 1,
-  backgroundColor: '#efefef',
+  backgroundColor: color('backgroundPrimary'),
 })

@@ -1,21 +1,27 @@
 import { style } from "@vanilla-extract/css";
+import { color } from "../styles/helpers";
+import { theme } from "../styles/theme.css";
 
 export const app = style({
   display: 'flex',
-  justifyContent: 'flex-end',
+  color: color('fontColor'),
+  backgroundColor: color('backgroundMain'),
 })
 
 export const tasksFilter = style({
   padding: 8,
   display: 'flex',
   flexDirection: 'column',
-  position: 'fixed',
   zIndex: 60,
   width: 307,
-  left: 0,
-  top: 0,
-  bottom: 0,
-  backgroundColor: 'rgb(244,244,244)',
   height: '100vh',
-  flex: '1 1',
+  backgroundColor: color('backgroundSecondary'),
+})
+
+export const navBar = style({
+  width: 50,
+  height: '100vh',
+  padding: 8,
+  backgroundColor: color('backgroundSecondary'),
+  borderRight: `1px solid ${color('backgroundMain')}`
 })

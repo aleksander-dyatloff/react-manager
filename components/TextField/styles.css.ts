@@ -1,8 +1,10 @@
 import { style } from "@vanilla-extract/css";
+import { color } from "../../styles/helpers";
+import { theme } from "../../styles/theme.css";
 
 export const wrapper = style({
   padding: '0 10px',
-  backgroundColor: 'white',
+  backgroundColor: color('backgroundMain'),
   height: 26,
   borderRadius: 10,
   display: 'flex',

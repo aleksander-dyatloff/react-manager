@@ -1,4 +1,5 @@
 import { style, styleVariants } from "@vanilla-extract/css";
+import { color } from "../../styles/helpers";
 
 export const task = style({
   position: 'absolute',
@@ -6,7 +7,7 @@ export const task = style({
   borderRadius: 10,
   display: 'flex',
   flexDirection: 'column',
-  backgroundColor: '#efefef',
+  backgroundColor: color('backgroundPrimary'),
   width: '100%',
   height: '110px',
   overflow: 'hidden',
@@ -30,7 +31,7 @@ export const taskVariants = styleVariants({
   isElevating: [task, {
     transform: 'scale(1.05)',
     boxShadow: '0 4px 6px 1px rgba(56, 56, 56, 0.2)',
-    backgroundColor: 'rgba(239, 239, 239, 0.7)',
+    backgroundColor: color('backgroundPrimary', 0.7),
     backdropFilter: 'blur(8px) saturate(180%)',
   }],
   isDragging: [task, {
@@ -73,7 +74,7 @@ export const taskNumber = style({
     bottom: 0,
     right: 0,
     width: 1,
-    backgroundColor: 'white'
+    backgroundColor: color('backgroundMain'),
   }
 })
 
@@ -84,7 +85,7 @@ export const taskTimeLine = style({
   bottom: 6,
   height: 4,
   borderRadius: 6,
-  backgroundColor: 'white',
+  backgroundColor: color('backgroundMain'),
   overflow: 'hidden',
   display: 'flex',
   alignItems: 'center',
@@ -130,7 +131,7 @@ export const taskAssignerAvatar = style({
   height: 20,
   borderRadius: 20,
   overflow: 'hidden',
-  backgroundColor: 'white',
+  backgroundColor: color('backgroundMain'),
   marginRight: 4,
 })
 
@@ -174,7 +175,7 @@ export const taskTags = style({
 })
 
 export const taskTag = style({
-  backgroundColor: 'white',
+  backgroundColor: color('backgroundMain'),
   padding: '2px 4px',
   borderRadius: 20,
   color: 'var(--taskColor)',

@@ -1,8 +1,12 @@
 import { style } from "@vanilla-extract/css";
+import { color } from "../../styles/helpers";
+import { theme } from "../../styles/theme.css";
 
 export const table = style({
-  height: '100vh',
+  WebkitOverflowScrolling: 'auto',
   userSelect: 'none',
+  height: '100vh',
+  overflowY: 'auto',
 });
 
 export const openedTask = style({
@@ -25,11 +29,11 @@ export const tableSpaceDivider = style({
   height: 1,
   flex: '1 1',
   margin: '0 16px',
-  backgroundColor: '#efefef',
+  backgroundColor: color('backgroundPrimary'),
 })
 
 export const tableColumnDivider = style({
   margin: '8px 0',
   width: 1,
-  backgroundColor: '#efefef',
+  backgroundColor: color('backgroundPrimary'),
 })

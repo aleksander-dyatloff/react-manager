@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import Image from "next/image";
 import { CSSProperties, forwardRef, useContext, useEffect, useState } from "react";
 import DragZoneContext from "../DragZone/context";
 import ElementPosition from "../ElementPosition";
@@ -60,10 +61,18 @@ const Component = forwardRef<HTMLElement, Props>(({
           ))}
         </div>
       )}
-      <div className={styles.taskAssigner}>
-        <img className={styles.taskAssignerAvatar} src={task.assigner?.avatar} alt={[task.assigner?.firstName, task.assigner?.lastName].join(' ')} />
-        <span className={styles.taskAssignerName}>{[task.assigner?.firstName, task.assigner?.lastName].join(' ')}</span>
-      </div>
+      {task.assigner && (
+        <div className={styles.taskAssigner}>
+          <Image
+            {...task.assigner.avatar}
+            className={styles.taskAssignerAvatar}
+            width={20}
+            height={20}
+            alt={[task.assigner?.firstName, task.assigner?.lastName].join(' ')}
+          />
+          <span className={styles.taskAssignerName}>{[task.assigner?.firstName, task.assigner?.lastName].join(' ')}</span>
+        </div>      
+      )}
       {task.remainingTime && (
         <div className={classNames(styles.taskTimeLine, isAltVariant && styles.taskTimeLineVariant.isExpanded)}>
           <div style={{ width: `${task.remainingTime ?? 0}%` }} className={styles.taskRemainingTime} />
