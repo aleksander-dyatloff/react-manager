@@ -20,7 +20,7 @@ const Component: FC<Props> = ({
     if (!dragZoneRef.current) return;
 
     const handleDrop = (event: DragEvent) => {
-      event.preventDefault();
+      event.stopPropagation();
 
       onDrop(event.detail)
     }

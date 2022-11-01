@@ -1,4 +1,5 @@
 import { FC, MouseEventHandler, useContext, useRef, useState } from "react";
+import DragZoneContext from "../DragZone/context";
 import ElementPositionContainerContext from "../ElementPositionContainer/context";
 import { Props } from "./types";
 
@@ -6,6 +7,7 @@ const Component: FC<Props> = ({ render, value }) => {
   const [isDragging, setIsDragging] = useState(false);
   const dragItemRef = useRef<HTMLElement | null>(null);
   const { ref: relativeContainerRef } = useContext(ElementPositionContainerContext);
+  const { setDragZoneIsActive } = useContext(DragZoneContext)
 
   const handleMouseDown: MouseEventHandler<HTMLElement> = (startEvent) => {
     if (!dragItemRef.current) return;
@@ -13,6 +15,7 @@ const Component: FC<Props> = ({ render, value }) => {
     const mouseDownTime = Date.now();
 
     setIsDragging(true);
+    setDragZoneIsActive(true);
 
     const dragItemRect = dragItemRef.current.getBoundingClientRect();
 
@@ -42,6 +45,7 @@ const Component: FC<Props> = ({ render, value }) => {
 
     const handleMouseUp = (endEvent: HTMLElementEventMap['mouseup']) => {
       setIsDragging(false)
+      setDragZoneIsActive(false);
 
       const mouseUpTime = Date.now();
 

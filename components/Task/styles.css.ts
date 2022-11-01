@@ -35,7 +35,11 @@ export const taskVariants = styleVariants({
   }],
   isDragging: [task, {
     pointerEvents: 'none',  
-  }]
+  }],
+  isDisabled: [task, {
+    transform: 'scale(0.95)',
+    opacity: 0.5,
+  }],
 })
 
 export const taskInModal = style({
@@ -79,9 +83,20 @@ export const taskTimeLine = style({
   right: 8,
   bottom: 6,
   height: 4,
-  borderRadius: 4,
+  borderRadius: 6,
   backgroundColor: 'white',
   overflow: 'hidden',
+  display: 'flex',
+  alignItems: 'center',
+  padding: '0 8px',
+  fontSize: 11,
+  fontWeight: 500,
+})
+
+export const taskTimeLineVariant = styleVariants({
+  isExpanded: [taskTimeLine, {
+    height: 12,
+  }],
 })
 
 export const taskRemainingTime = style({
@@ -90,6 +105,12 @@ export const taskRemainingTime = style({
   height: 'inherit',
   borderRadius: 'inherit',
   backgroundColor: 'var(--taskColor)',
+})
+
+export const taskRemainingTimeText = style({
+  position: 'relative',
+  margin: '0 auto',
+  zIndex: 1,
 })
 
 export const taskAssigner = style({

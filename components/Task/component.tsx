@@ -1,5 +1,6 @@
 import classNames from "classnames";
-import { CSSProperties, forwardRef, useEffect, useState } from "react";
+import { CSSProperties, forwardRef, useContext, useEffect, useState } from "react";
+import DragZoneContext from "../DragZone/context";
 import ElementPosition from "../ElementPosition";
 import Modal from "../Modal";
 import { priorityClassNameMap, taskColorMap } from "./data";
@@ -19,6 +20,7 @@ const Component = forwardRef<HTMLElement, Props>(({
   const [taskIsOpen, setTaskIsOpen] = useState(false);
   const taskIdPrefix = task.id.split('-')[0];
   const taskColor = taskColorMap[taskIdPrefix as keyof typeof taskColorMap]
+  const { dragZoneIsActive } = useContext(DragZoneContext);
 
   return (
     <>
@@ -36,7 +38,8 @@ const Component = forwardRef<HTMLElement, Props>(({
       className={classNames(
         styles.task,
         isElevating && styles.taskVariants.isElevating,
-        isDragging && styles.taskVariants.isDragging
+        isDragging && styles.taskVariants.isDragging,
+        !isDragging && dragZoneIsActive && styles.taskVariants.isDisabled,
       )}
       {...restProps}
     >
@@ -62,9 +65,20 @@ const Component = forwardRef<HTMLElement, Props>(({
         <span className={styles.taskAssignerName}>{[task.assigner?.firstName, task.assigner?.lastName].join(' ')}</span>
       </div>
       {task.remainingTime && (
-        <div className={styles.taskTimeLine}>
-          {task.remainingTime && (
-            <div style={{ width: `${task.remainingTime}%` }} className={styles.taskRemainingTime} />
+        <div className={classNames(styles.taskTimeLine, isAltVariant && styles.taskTimeLineVariant.isExpanded)}>
+          <div style={{ width: `${task.remainingTime ?? 0}%` }} className={styles.taskRemainingTime} />
+          {isAltVariant && (
+            <>
+            <div className={styles.taskRemainingTimeText}>
+              3h 15m
+            </div>            
+            <div className={styles.taskRemainingTimeText}>
+              from
+            </div>            
+            <div className={styles.taskRemainingTimeText}>
+              10h 30m
+            </div>           
+            </>
           )}
         </div>        
       )}

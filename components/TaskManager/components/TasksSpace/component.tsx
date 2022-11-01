@@ -50,7 +50,7 @@ const Component: FC<Props> = ({
       >
         <div className={styles.spaceTitle}>{space.title}</div>
       </div>
-      {columns.map((column, index) => (
+      {spaceIsOpen && columns.map((column, index) => (
         <Fragment key={column.id}>
           <DroppableZone
             onDrop={({ value }: { value: TaskType }) => {
