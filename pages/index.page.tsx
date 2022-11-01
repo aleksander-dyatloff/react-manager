@@ -249,13 +249,13 @@ export default function Home() {
   return (
     <GlobalContext.Provider value={{ isAltVariant, isDarkTheme }}>
     <div className={classNames(styles.app, isDarkTheme ? darkTheme : lightTheme)}>
-      <div className={styles.navBar}>
+      {/*<div className={styles.navBar}>*/}
+      {/*</div>*/}
+      <div className={styles.tasksFilter}>
+        <TextField placeholder='Search Task' />
         <button onClick={() => setDarkTheme(!isDarkTheme)}>
           {isDarkTheme ? 'Dark' : 'Light'}
         </button>
-      </div>
-      <div className={styles.tasksFilter}>
-        <TextField placeholder='Search Task' />
       </div>
       <TaskManager
         isAltVariant={isAltVariant}
