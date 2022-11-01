@@ -1,71 +1,266 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import { useEffect, useState } from 'react';
+import User1Image from '../assets/users/1.png';
+import User2Image from '../assets/users/2.png';
+import User3Image from '../assets/users/3.png';
+import { Task } from '../components/Task/types';
+import TaskManager from '../components/TaskManager';
+import { Column, TasksSpace } from '../components/TaskManager/components/TasksSpace/types';
+import TextField from '../components/TextField';
+import * as styles from './styles.css';
+
+const users = [
+  {
+    id: '1',
+    firstName: 'Aleks',
+    lastName: 'Dyatlov',
+    avatar: User1Image.src,
+  },
+  {
+    id: '2',
+    firstName: 'Diana',
+    lastName: 'Lima',
+    avatar: User2Image.src,
+  },
+  {
+    id: '3',
+    firstName: 'Viacheslav',
+    lastName: 'Sokolenkov',
+    avatar: User3Image.src,
+  },
+]
+
+const columnsData: Column[] = [
+  {
+    id: 0,
+    title: 'To Do',
+  },
+  {
+    id: 1,
+    title: 'In Progress',
+  },
+  {
+    id: 2,
+    title: 'Blocked',
+  },
+  {
+    id: 3,
+    title: 'Ready for QA',
+  },
+  {
+    id: 4,
+    title: 'QA',
+  },
+  {
+    id: 5,
+    title: 'Done',
+  },
+]
+
+const tasksSpacesData: TasksSpace[] = [
+  {
+    id: 0,
+    title: 'Main Space',
+  },
+  {
+    id: 1,
+    title: 'Home Page',
+  },
+  {
+    id: 2,
+    title: 'Dashboard Page',
+  },
+  {
+    id: 3,
+    title: 'Profile Page',
+  },
+  {
+    id: 4,
+    title: 'Support Page',
+  },
+]
+
+const tasksData: Task[] = [
+  {
+    id: 'FE-1',
+    title: 'Initialize NextJS Project',
+    columnId: 5,
+    remainingTime: 100,
+    assigner: users[0],
+    priority: 3,
+    spaceId: 1,
+  },
+  {
+    id: 'FE-2',
+    title: 'Create Header',
+    columnId: 4,
+    assigner: users[0],
+    priority: 2,
+    remainingTime: 85,
+    spaceId: 1,
+  },
+  {
+    id: 'FE-3',
+    title: 'Create Footer',
+    columnId: 3,
+    assigner: users[0],
+    priority: 2,
+    remainingTime: 95,
+    spaceId: 1,
+  },
+  {
+    id: 'FE-4',
+    title: 'Add Storybook plugin',
+    columnId: 3,
+    assigner: users[0],
+    priority: 1,
+    remainingTime: 40,
+    spaceId: 2,
+  },
+  {
+    id: 'FE-5',
+    title: 'Create UI kit by design from Figma',
+    columnId: 1,
+    assigner: users[0],
+    priority: 3,
+    remainingTime: 60,
+    spaceId: 2,
+  },
+  {
+    id: 'FE-6',
+    title: 'Integrate Google Analytics',
+    columnId: 0,
+    assigner: users[0],
+    priority: 1,
+    spaceId: 2,
+  },
+  {
+    id: 'FE-7',
+    title: 'Configure project APIs with library',
+    columnId: 0,
+    assigner: users[0],
+    priority: 3,
+    remainingTime: 100,
+    tags: ['Needs fixes'],
+    spaceId: 2,
+  },
+  {
+    id: 'BE-2',
+    title: 'Create Users API',
+    columnId: 2,
+    assigner: users[2],
+    priority: 2,
+    remainingTime: 20,
+    tags: ['Broken DataBase'],
+    spaceId: 3,
+  },
+  {
+    id: 'BE-1',
+    title: 'Integrate MongoDb',
+    columnId: 5,
+    assigner: users[2],
+    priority: 3,
+    remainingTime: 100,
+    spaceId: 3,
+  },
+  {
+    id: 'BE-3',
+    title: 'Create Socials API',
+    columnId: 0,
+    assigner: users[2],
+    priority: 2,
+    spaceId: 3,
+  },
+  {
+    id: 'BE-4',
+    title: 'Create Home Page API',
+    columnId: 1,
+    assigner: users[2],
+    priority: 2,
+    remainingTime: 10,
+    spaceId: 3,
+  },
+  {
+    id: 'UX-1',
+    title: 'Create UI-kit',
+    columnId: 5,
+    assigner: users[1],
+    priority: 2,
+    remainingTime: 100,
+    spaceId: 3,
+  },
+  {
+    id: 'UX-2',
+    title: 'Home Page',
+    columnId: 1,
+    assigner: users[1],
+    priority: 2,
+    remainingTime: 50,
+    spaceId: 3,
+  },
+  {
+    id: 'UX-3',
+    title: 'About Page',
+    columnId: 0,
+    assigner: users[1],
+    priority: 1,
+    spaceId: 3,
+  },
+  {
+    id: 'FE-8',
+    title: 'Integrate Mailchimp to project',
+    columnId: 0,
+    assigner: users[0],
+    priority: 1,
+    spaceId: 3,
+  },
+]
 
 export default function Home() {
+  const [isAltVariant, setIsAltVariant] = useState(false);
+  const [tasks, setTasks] = useState(tasksData)
+  const [closedSpaces, setClosedSpaces] = useState<Array<string | number>>([]);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Alt') {
+        setIsAltVariant(true)
+      }
+    }
+
+    const handleKeyUp = (event: KeyboardEvent) => {
+      if (event.key === 'Alt') {
+        setIsAltVariant(false)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);    
+    }
+  }, [])
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <meta name="description" content="Generated by create next app" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <div className={styles.app}>
+      <div className={styles.tasksFilter}>
+        <TextField placeholder='Search Task' />
+      </div>
+      <TaskManager
+        isAltVariant={isAltVariant}
+        columns={columnsData}
+        spaces={tasksSpacesData}
+        tasks={tasks}
+        onTasksChange={setTasks}
+        closedSpaces={closedSpaces}
+        toggleCloseSpace={(spaceId) => {
+          const spaceIsClosed = closedSpaces.find(id => id === spaceId)
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+          if (spaceIsClosed) setClosedSpaces(closedSpaces.filter(id => id !== spaceId))
+          else setClosedSpaces([...closedSpaces, spaceId])
+        }}
+      />
     </div>
   )
 }
