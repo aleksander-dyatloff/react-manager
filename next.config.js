@@ -7,6 +7,7 @@ const withVanillaExtract = createVanillaExtractPlugin();
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  pageExtensions: ['page.tsx'],
   eslint: {
     ignoreDuringBuilds: true,
   }
