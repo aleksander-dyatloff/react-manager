@@ -1,7 +1,7 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 
 export const task = style({
-  position: 'relative',
+  position: 'absolute',
   fontSize: 12,
   borderRadius: 10,
   display: 'flex',

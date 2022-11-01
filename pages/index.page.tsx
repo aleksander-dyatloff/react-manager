@@ -217,7 +217,7 @@ const tasksData: Task[] = [
 
 export default function Home() {
   const [isAltVariant, setIsAltVariant] = useState(false);
-  const [tasks, setTasks] = useState(tasksData)
+  const [tasks, setTasks] = useState<Task[]>(tasksData)
   const [closedSpaces, setClosedSpaces] = useState<Array<string | number>>([]);
 
   useEffect(() => {
@@ -260,7 +260,7 @@ export default function Home() {
           if (spaceIsClosed) setClosedSpaces(closedSpaces.filter(id => id !== spaceId))
           else setClosedSpaces([...closedSpaces, spaceId])
         }}
-      />
+      />      
     </div>
   )
 }

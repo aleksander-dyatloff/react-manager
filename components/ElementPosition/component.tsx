@@ -12,6 +12,8 @@ const Component: FC<Props> = ({
   const ref = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout | number | undefined
+
     const realElement = document.getElementById(id);
 
     if (!realElement) return;
@@ -22,6 +24,9 @@ const Component: FC<Props> = ({
 
     const containerRect = containerRef.current.getBoundingClientRect();
     const rect = ref.current.getBoundingClientRect();
+
+    console.log('rect', rect);
+    console.log('containerRect', containerRect);
 
     realElement.style.transitionProperty = [
       'top','left','width','height',
@@ -38,7 +43,7 @@ const Component: FC<Props> = ({
     realElement.style.height = rect.height + 'px';
     realElement.style.zIndex = styles.zIndex;
 
-    const timeoutId = setTimeout(() => {
+    timeoutId = setTimeout(() => {
       realElement.style.transitionProperty = realElement.style.transitionProperty.split(', ').filter(prop => {
         return (prop !== 'top' && prop !== 'left' && prop !== 'width' && prop !== 'height')
       }).join(', ');

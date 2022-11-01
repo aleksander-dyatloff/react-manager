@@ -32,6 +32,7 @@ export const spaceTitle = style({
 })
 
 export const tableSpaceSticker = style({
+  position: 'absolute',
   padding: '10px 0',
   backgroundColor: '#efefef',
   borderRadius: 10,

@@ -1,5 +1,4 @@
-import classNames from 'classnames';
-import { FC, Fragment, useEffect, useState } from "react";
+import { FC, Fragment } from "react";
 import DraggableItem from "../DraggableItem";
 import DragZone from '../DragZone';
 import ElementPositionContainer from "../ElementPositionContainer";
