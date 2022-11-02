@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import User1Image from '../assets/users/1.png';
 import User2Image from '../assets/users/2.png';
@@ -220,6 +221,7 @@ const tasksData: Task[] = [
 
 export default function Home() {
   const [isAltVariant, setIsAltVariant] = useState(false);
+  const [existUsers, setExistUsers] = useState<string[]>(users.map(user => user.id))
   const [tasks, setTasks] = useState<Task[]>(tasksData)
   const [closedSpaces, setClosedSpaces] = useState<Array<string | number>>([]);
   const [isDarkTheme, setDarkTheme] = useState(false);
@@ -256,13 +258,32 @@ export default function Home() {
         <button onClick={() => setDarkTheme(!isDarkTheme)}>
           {isDarkTheme ? 'Dark' : 'Light'}
         </button>
+        <div>
+          {users.map(user => (
+            <label key={user.id} className={styles.user}>
+              <input
+                type="checkbox"
+                checked={Boolean(existUsers.find(us => us === user.id))}
+                onChange={() => {
+                  setExistUsers(
+                    Boolean(existUsers.find(us => us === user.id))
+                    ? existUsers.filter(us => us !== user.id)
+                    : [...existUsers, user.id]
+                  )
+                }}
+              />
+              <Image className={styles.avatar} {...user.avatar} width={20} height={20} alt={user.lastName} />
+              {[user.firstName, user.lastName].join(' ')}
+            </label>
+          ))}
+        </div>
       </div>
       <div>
       <TaskManager
         isAltVariant={isAltVariant}
         columns={columnsData}
         spaces={tasksSpacesData}
-        tasks={tasks}
+        tasks={tasks.filter(task => existUsers.includes(task.assigner?.id))}
         onTasksChange={setTasks}
         closedSpaces={closedSpaces}
         toggleCloseSpace={(spaceId) => {

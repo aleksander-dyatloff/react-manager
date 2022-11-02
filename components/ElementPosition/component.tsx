@@ -25,9 +25,6 @@ const Component: FC<Props> = ({
     const containerRect = containerRef.current.getBoundingClientRect();
     const rect = ref.current.getBoundingClientRect();
 
-    console.log('rect', rect);
-    console.log('containerRect', containerRect);
-
     realElement.style.transitionProperty = [
       'top','left','width','height',
       ...realElement.style.transitionProperty.split(', ')

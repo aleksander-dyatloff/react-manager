@@ -1,11 +1,20 @@
 import { style } from "@vanilla-extract/css";
 import { color } from "../styles/helpers";
-import { theme } from "../styles/theme.css";
 
 export const app = style({
   display: 'flex',
   color: color('fontColor'),
   backgroundColor: color('backgroundMain'),
+})
+
+export const avatar = style({
+  borderRadius: '50%',
+})
+
+export const user = style({
+  display: 'flex',
+  alignItems: 'center',
+  padding: 4,
 })
 
 export const tasksFilter = style({

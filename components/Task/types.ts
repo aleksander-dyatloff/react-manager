@@ -8,7 +8,8 @@ export interface Task {
   columnId: Column['id']
   title: string
   description?: string
-  assigner?: {
+  assigner: {
+    id: string
     firstName: string
     lastName: string
     avatar: StaticImageData
