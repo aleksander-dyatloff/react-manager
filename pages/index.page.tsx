@@ -257,7 +257,7 @@ export default function Home() {
         <TextField className={styles.searchField} placeholder='Search Task' />
         <div>
           {users.map(user => (
-            <label key={user.id} className={classNames(styles.user, Boolean(existUsers.find(us => us === user.id)) && styles.userDisabled)}>
+            <label key={user.id} className={classNames(styles.user, !existUsers.find(us => us === user.id) && styles.userDisabled)}>
               <input
                 className={styles.userCheckbox}
                 type="checkbox"
