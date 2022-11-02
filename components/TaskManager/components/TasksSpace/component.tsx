@@ -50,7 +50,7 @@ const Component: FC<Props> = ({
       >
         <div className={styles.spaceTitle}>{space.title}</div>
       </div>
-      {spaceIsOpen && columns.map((column, index) => (
+      {columns.map((column, index) => (
         <Fragment key={column.id}>
           <DroppableZone
             onDrop={({ value }: { value: TaskType }) => {
@@ -79,7 +79,7 @@ const Component: FC<Props> = ({
               </div>              
             )}
           />
-          {columns.length !== index + 1 && (
+          {spaceIsOpen && columns.length !== index + 1 && (
             <div className={styles.tableColumnDivider} />
           )}
         </Fragment>

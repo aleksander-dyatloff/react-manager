@@ -6,7 +6,7 @@ globalStyle('*', {
 
 globalStyle('body', {
   height: '100vh',
-  overflow: 'hidden',
+  //overflow: 'hidden',
   width: '100vw',
   margin: 0,
   padding: 0,

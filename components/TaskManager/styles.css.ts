@@ -1,6 +1,5 @@
 import { style } from "@vanilla-extract/css";
 import { color } from "../../styles/helpers";
-import { theme } from "../../styles/theme.css";
 
 export const table = style({
   WebkitOverflowScrolling: 'auto',
@@ -20,7 +19,6 @@ export const tableBody = style({
 
 export const tableSpaceDividersWrapper = style({
   display: 'flex',
-  marginBottom: 8,
   marginLeft: 32,
   padding: '0 8px',
 })

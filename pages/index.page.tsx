@@ -257,6 +257,7 @@ export default function Home() {
           {isDarkTheme ? 'Dark' : 'Light'}
         </button>
       </div>
+      <div>
       <TaskManager
         isAltVariant={isAltVariant}
         columns={columnsData}
@@ -270,7 +271,8 @@ export default function Home() {
           if (spaceIsClosed) setClosedSpaces(closedSpaces.filter(id => id !== spaceId))
           else setClosedSpaces([...closedSpaces, spaceId])
         }}
-      />      
+      />            
+      </div>
     </div>    
     </GlobalContext.Provider>
   )

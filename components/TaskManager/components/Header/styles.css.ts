@@ -1,6 +1,5 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import { color } from "../../../../styles/helpers";
-import { theme } from "../../../../styles/theme.css";
 
 export const tableHead = style({
   padding: '0 8px 0 40px',

@@ -63,7 +63,7 @@ export const taskTitle = style({
 })
 
 export const taskNumber = style({
-  fontWeight: 600,
+  fontWeight: 500,
   paddingRight: 6,
   position: 'relative',
 

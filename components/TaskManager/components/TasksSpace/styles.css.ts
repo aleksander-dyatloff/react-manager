@@ -3,15 +3,13 @@ import { color } from "../../../../styles/helpers";
 
 export const tableSpace = style({
   display: 'flex',
-  marginBottom: 8,
 })
 
 export const tableSpaceStickerWrapper = style({
   zIndex: 10,
   minHeight: 112,
   width: 24,
-  marginLeft: 8,
-  marginRight: 8,
+  margin: '8px',
 })
 
 export const tableSpaceStickerWrapperVariant = styleVariants({
@@ -64,7 +62,7 @@ export const tableSpaceStickerVariant = styleVariants({
 })
 
 export const columnBody = style({
-  padding: '0 8px',
+  padding: '8px',
   width: '180px', 
   display: 'flex',
   flexDirection: 'column',
