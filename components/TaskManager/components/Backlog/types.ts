@@ -1,6 +1,6 @@
-import { Task } from "../../../Task/types";
+import TaskType from "@interfaces/Task"
 
 export interface Props {
-  tasks: Task[]
-  onTasksChange?: (tasks: Task[]) => void
+  tasks: TaskType[]
+  onTasksChange?: (tasks: TaskType[]) => void
 }

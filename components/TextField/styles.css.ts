@@ -5,7 +5,7 @@ import { theme } from "../../styles/theme.css";
 export const wrapper = style({
   padding: '0 10px',
   backgroundColor: color('backgroundMain'),
-  height: 26,
+  height: 32,
   borderRadius: 10,
   display: 'flex',
   justifyContent: 'stretch',

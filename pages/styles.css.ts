@@ -7,65 +7,33 @@ export const app = style({
   backgroundColor: color('backgroundMain'),
 })
 
-export const user = style({
-  userSelect: 'none',
-  cursor: 'pointer',
-  display: 'flex',
-  fontSize: 14,
-  alignItems: 'center',
-  padding: '4px 8px',
-  transitionProperty: 'background-color',
-  transitionDuration: '120ms',
-  borderRadius: 10,
-
-  ':hover': {
-    backgroundColor: color('backgroundMain'),
-  }
-})
-
-export const userCheckbox = style({
-  display: 'none',
-})
-
-export const searchField = style({
-  marginBottom: 8,
-})
-
-export const icon = style({
-  width: '1rem',
-  height: '1rem',
-  marginLeft: 'auto',
-  color: 'gray',
-})
-
-export const userDisabled = style({
-  color: 'gray',
-})
-
-export const avatar = style({
-  borderRadius: '50%',
-  marginRight: 8,
-  selectors: {
-    [`${userDisabled} &`]: {
-      filter: 'grayscale(100%)',
-    },
-  }
-})
-
-export const tasksFilter = style({
-  padding: 8,
+export const navBar = style({
   display: 'flex',
   flexDirection: 'column',
-  zIndex: 60,
-  width: 307,
-  height: '100vh',
-  backgroundColor: color('backgroundSecondary'),
-})
-
-export const navBar = style({
+  alignItems: 'center',
+  padding: '8px 0',
   width: 50,
   height: '100vh',
-  padding: 8,
-  backgroundColor: color('backgroundSecondary'),
-  borderRight: `1px solid ${color('backgroundMain')}`
+  backgroundColor: color("backgroundMain"),
+})
+
+export const navBarAvatar = style({
+  borderRadius: 10,
+  marginBottom: 10,
+})
+
+export const navBarButton = style({
+  width: 32,
+  height: 32,
+  padding: 6,
+  borderRadius: 10,
+  marginBottom: 10,
+  border: 'none',
+  backgroundColor: 'transparent',
+  cursor: 'pointer',
+  color: 'inherit',
+
+  ':hover': {
+    backgroundColor: color('backgroundPrimary')
+  }
 })

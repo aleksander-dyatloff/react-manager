@@ -79,7 +79,7 @@ export const tableTask = style({
 })
 
 export const tableColumnDivider = style({
-  margin: '8px 0',
+  margin: '16px 0',
   width: 1,
   backgroundColor: color('backgroundPrimary'),
 })

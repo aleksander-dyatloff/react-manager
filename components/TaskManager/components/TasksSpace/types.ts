@@ -1,21 +1,13 @@
-import { Task } from "../../../Task/types"
-
-export interface TasksSpace {
-  id: string | number
-  title: string
-}
-
-export interface Column {
-  id: string | number
-  title: string
-}
+import TaskType from "@interfaces/Task"
+import TasksColumn from "@interfaces/TasksColumn"
+import TasksSpace from "@interfaces/TasksSpace"
 
 export interface Props {
   space: TasksSpace
-  columns: Column[]
-  tasks: Task[]
+  columns: TasksColumn[]
+  tasks: TaskType[]
   className?: string
-  onTasksChange?: (tasks: Task[]) => void
+  onTasksChange?: (tasks: TaskType[]) => void
   prevSpaceMaxTasks: number
   spaceMaxTasks: number
   onToggleOpenSpace: (spaceId: TasksSpace['id']) => void

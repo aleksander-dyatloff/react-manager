@@ -9,7 +9,7 @@ import TasksSpace from './components/TasksSpace';
 import * as styles from './styles.css';
 import { Props } from "./types";
 
-const Component: FC<Props> = ({ columns = [], tasks = [], spaces = [], onTasksChange, closedSpaces, toggleCloseSpace, isAltVariant }) => {
+const Component: FC<Props> = ({ columns = [], tasks = [], spaces = [], onTasksChange, closedSpaces, toggleCloseSpace }) => {
   const [headerIsElevating, setHeaderIsElevating] = useState(false);
   const spacesData = spaces.map((space, spaceIndex) => {
     const spaceTasks = tasks.filter(task => task.spaceId === space.id);
@@ -40,7 +40,7 @@ const Component: FC<Props> = ({ columns = [], tasks = [], spaces = [], onTasksCh
   return (
     <DragZone render={(props) => (
       <section onScroll={handleTableScroll} className={styles.table} {...props}>
-        <Header isElevating={headerIsElevating} isAltVariant={isAltVariant} tasks={tasks} columns={columns} />
+        <Header isElevating={headerIsElevating} tasks={tasks} columns={columns} />
         <ElementPositionContainer     
           className={styles.tableBody}
         >
@@ -55,7 +55,6 @@ const Component: FC<Props> = ({ columns = [], tasks = [], spaces = [], onTasksCh
               key={task.id}
               render={({ isDragging, ...props}) => (
                 <Task
-                  isAltVariant={isAltVariant}
                   isElevating={Boolean(
                     closedSpaces.find(spaceId => spaceId === task.spaceId) ?? isDragging
                   )}

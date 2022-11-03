@@ -1,8 +1,8 @@
+import TaskType from "@interfaces/Task";
 import classNames from "classnames";
 import { FC, Fragment } from "react";
 import DroppableZone from "../../../DroppableZone";
 import ElementPosition from "../../../ElementPosition";
-import { Task as TaskType } from "../../../Task/types";
 import * as styles from './styles.css';
 import { Props } from "./types";
 

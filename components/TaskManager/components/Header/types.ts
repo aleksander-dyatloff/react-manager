@@ -1,9 +1,8 @@
-import { Task } from "../../../Task/types";
-import { Column } from "../TasksSpace/types";
+import TaskType from "@interfaces/Task";
+import TasksColumn from "@interfaces/TasksColumn";
 
 export interface Props {
-  columns: Column[]
-  tasks: Task[]
-  isAltVariant?: boolean
+  columns: TasksColumn[]
+  tasks: TaskType[]
   isElevating?: boolean
 }

@@ -1,6 +1,8 @@
 import classNames from "classnames";
 import Image from "next/image";
 import { CSSProperties, forwardRef, useContext, useEffect, useState } from "react";
+import GlobalContext from "../../contexts/global";
+import TasksTableContext from "../../contexts/tasksTable";
 import DragZoneContext from "../DragZone/context";
 import ElementPosition from "../ElementPosition";
 import Modal from "../Modal";
@@ -15,13 +17,15 @@ const Component = forwardRef<HTMLElement, Props>(({
   isDragging,
   task,
   onMouseDown,
-  isAltVariant,
   ...restProps
 }, ref) => {
+  const { isAltVariant } = useContext(GlobalContext)
+  const { usersMap } = useContext(TasksTableContext);
+  const { dragZoneIsActive } = useContext(DragZoneContext);
   const [taskIsOpen, setTaskIsOpen] = useState(false);
   const taskIdPrefix = task.id.split('-')[0];
   const taskColor = taskColorMap[taskIdPrefix as keyof typeof taskColorMap]
-  const { dragZoneIsActive } = useContext(DragZoneContext);
+  const taskAssigner = usersMap[task.assignerId]
 
   return (
     <>
@@ -46,7 +50,7 @@ const Component = forwardRef<HTMLElement, Props>(({
     >
       <div className={styles.taskIndicator} />
       <div className={styles.taskTitle}>
-        {!isAltVariant && (
+        {isAltVariant && (
           <>
             <span className={styles.taskNumber}>{task.id}</span>
             {'   '}                  
@@ -61,16 +65,18 @@ const Component = forwardRef<HTMLElement, Props>(({
           ))}
         </div>
       )}
-      {task.assigner && (
+      {task.assignerId && (
         <div className={styles.taskAssigner}>
           <Image
-            {...task.assigner.avatar}
+            {...taskAssigner.avatar}
             className={styles.taskAssignerAvatar}
             width={20}
             height={20}
-            alt={[task.assigner?.firstName, task.assigner?.lastName].join(' ')}
+            alt={[taskAssigner.firstName, taskAssigner.lastName].join(' ')}
           />
-          <span className={styles.taskAssignerName}>{[task.assigner?.firstName, task.assigner?.lastName].join(' ')}</span>
+          <span className={styles.taskAssignerName}>
+            {[taskAssigner.firstName, taskAssigner.lastName].join(' ')}
+          </span>
         </div>      
       )}
       {task.remainingTime && (

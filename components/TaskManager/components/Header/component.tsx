@@ -1,14 +1,16 @@
 import classNames from "classnames";
-import { FC, Fragment, useEffect, useState } from "react";
+import { FC, Fragment, useContext } from "react";
+import GlobalContext from "@contexts/global";  
 import * as styles from './styles.css';
 import { Props } from "./types";
 
 const Component: FC<Props> = ({
   columns,
   tasks,
-  isAltVariant,
   isElevating,
 }) => {
+  const { isAltVariant } = useContext(GlobalContext) 
+
   return (
     <header className={classNames(styles.tableHead, {
       [styles.tableHeadVariant.elevating]: isElevating

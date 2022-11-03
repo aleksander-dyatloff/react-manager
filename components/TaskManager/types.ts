@@ -1,13 +1,13 @@
-import { Task } from "../Task/types"
-import { Column, TasksSpace } from "./components/TasksSpace/types"
+import TaskType from "@interfaces/Task"
+import TasksColumn from "@interfaces/TasksColumn"
+import TasksSpace from "@interfaces/TasksSpace"
 
 export interface Props {
-  tasks?: Task[]
-  columns?: Column[]
+  tasks?: TaskType[]
+  columns?: TasksColumn[]
   spaces?: TasksSpace[]
-  onTasksChange?: (tasks: Task[]) => void
-  onTaskSelect?: (task: Task) => void
+  onTasksChange?: (tasks: TaskType[]) => void
+  onTaskSelect?: (task: TaskType) => void
   closedSpaces: Array<TasksSpace['id']>
   toggleCloseSpace: (spaceId: TasksSpace['id']) => void
-  isAltVariant?: boolean
 }

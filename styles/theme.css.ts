@@ -11,7 +11,7 @@ export const theme = createThemeContract({
 
 export const lightTheme = createTheme(theme, {
   color: {
-    fontColor: '0,0,0',
+    fontColor: '59,59,59',
     backgroundPrimary: '239,239,239',
     backgroundSecondary: '244,244,244',
     backgroundMain: '255,255,255',
@@ -20,7 +20,7 @@ export const lightTheme = createTheme(theme, {
 
 export const darkTheme = createTheme(theme, {
   color: {
-    fontColor: '255,255,255',
+    fontColor: '236,236,236',
     backgroundPrimary: '63,63,63',
     backgroundSecondary: '57,57,57',
     backgroundMain: '38,38,38',
