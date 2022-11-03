@@ -1,5 +1,4 @@
 import { FC, useEffect, useRef, useState } from "react";
-import { Task as TaskType } from "../Task/types";
 import DragZoneContext from "./context";
 import { Props } from "./types";
 

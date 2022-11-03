@@ -3,14 +3,14 @@ import { Props } from "./types";
 import * as styles from './styles.css'
 import classNames from "classnames";
 import DroppableZone from "../../../DroppableZone";
-import { Task as TaskType } from "../../../Task/types";
 import ElementPosition from "../../../ElementPosition";
+import TaskType from "@interfaces/Task";
 
 const Component: FC<Props> = ({
   tasks,
   onTasksChange,
 }) => {
-  const backlogTasks = tasks.filter((task) => task.columnId === -1 && task.spaceId === -1)
+  const backlogTasks = tasks.filter((task) => task.columnId === '-1' && task.spaceId === '-1')
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -25,8 +25,8 @@ const Component: FC<Props> = ({
             onTasksChange?.(tasks.map(task => {
               return (task.id !== value.id) ? task : ({
                 ...value,
-                columnId: -1,
-                spaceId: -1,
+                columnId: '-1',
+                spaceId: '-1',
               })
             }))
           }}
