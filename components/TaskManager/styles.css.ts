@@ -2,10 +2,7 @@ import { style } from "@vanilla-extract/css";
 import { color } from "../../styles/helpers";
 
 export const table = style({
-  WebkitOverflowScrolling: 'auto',
   userSelect: 'none',
-  height: '100vh',
-  overflowY: 'auto',
 });
 
 export const openedTask = style({

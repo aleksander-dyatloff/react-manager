@@ -7,14 +7,15 @@ export const user = style({
   display: 'flex',
   fontSize: 14,
   alignItems: 'center',
-  padding: '0 8px',
+  padding: '0 14px 0 10px',
   height: 32,
+  minHeight: 32,
   transitionProperty: 'background-color',
   transitionDuration: '120ms',
   borderRadius: 10,
 
   ':hover': {
-    backgroundColor: color('backgroundMain'),
+    backgroundColor: color('fontColor', 0.1),
   }
 })
 
@@ -29,8 +30,15 @@ export const searchField = style({
 export const icon = style({
   width: '1rem',
   height: '1rem',
-  marginLeft: 'auto',
+  marginLeft: 6,
   color: 'gray',
+})
+
+export const filterTitle = style({
+  marginRight: 'auto',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
 })
 
 export const userDisabled = style({
@@ -47,6 +55,19 @@ export const avatar = style({
   }
 })
 
+export const tasksFilterHeader = style({
+  padding: 8,
+  position: 'fixed',
+  top: 0,
+  left: 50,
+  width: 'inherit',
+  display: 'flex',
+  flexDirection: 'column',
+  zIndex: 99,
+  backgroundColor: color('backgroundSecondary', 0.7),
+  backdropFilter: 'blur(8px) saturate(180%)',
+})
+
 export const filterColor = style({
   borderRadius: '50%',
   width: 12,
@@ -55,12 +76,23 @@ export const filterColor = style({
   marginRight: 12,
 })
 
+export const tasksFilterWrapper = style({
+  position: 'relative',
+  width: 260,
+  height: '100vh',
+})
+
 export const tasksFilter = style({
+  left: 50,
+  width: 'inherit',
+  height: 'inherit',
+  position: 'fixed',
+  overscrollBehavior: 'contain',
   padding: 8,
+  paddingTop: '92px',
   display: 'flex',
   flexDirection: 'column',
   zIndex: 60,
-  width: 260,
-  height: '100vh',
   backgroundColor: color('backgroundSecondary'),
+  overflowY: 'auto',
 })

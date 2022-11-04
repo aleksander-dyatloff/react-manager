@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { FC, Fragment, useContext } from "react";
+import { FC, Fragment, useContext, useEffect, useState } from "react";
 import GlobalContext from "@contexts/global";  
 import * as styles from './styles.css';
 import { Props } from "./types";
@@ -7,9 +7,21 @@ import { Props } from "./types";
 const Component: FC<Props> = ({
   columns,
   tasks,
-  isElevating,
 }) => {
+  const [isElevating, setIsElevating] = useState(false);
   const { isAltVariant } = useContext(GlobalContext) 
+
+  useEffect(() => {
+    const handleTableScroll = () => {
+      setIsElevating(document.documentElement.scrollTop > 0)  
+    }
+
+    document.addEventListener('scroll', handleTableScroll);
+
+    return () => {
+      document.removeEventListener('scroll', handleTableScroll);    
+    }
+  }, []);
 
   return (
     <header className={classNames(styles.tableHead, {

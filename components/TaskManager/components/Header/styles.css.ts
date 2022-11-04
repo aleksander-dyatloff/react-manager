@@ -2,6 +2,7 @@ import { style, styleVariants } from "@vanilla-extract/css";
 import { color } from "../../../../styles/helpers";
 
 export const tableHead = style({
+  overscrollBehavior: 'contain',
   padding: '0 8px 0 40px',
   display: 'flex',
   alignItems: 'center',

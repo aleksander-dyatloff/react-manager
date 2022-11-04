@@ -18,4 +18,5 @@ export const input = style({
   margin: 0,
   width: 'auto',
   fontSize: 'inherit',
+  color: 'inherit',
 })

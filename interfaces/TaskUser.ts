@@ -4,7 +4,8 @@ interface TaskUserType {
   id: string
   firstName: string
   lastName: string
-  avatar: StaticImageData
+  color?: string
+  avatar?: StaticImageData
 }
 
 export default TaskUserType
