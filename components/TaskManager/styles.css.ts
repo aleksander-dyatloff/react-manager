@@ -20,6 +20,18 @@ export const tableSpaceDividersWrapper = style({
   padding: '0 8px',
 })
 
+export const taskInModal = style({
+  width: 'calc(100% - 80px)',
+  height: 'calc(100% - 80px)',
+  borderRadius: 20,
+  display: 'flex',
+  flexDirection: 'column',
+})
+
+export const taskModalContent = style({
+  flex: '1 0',
+})
+
 export const tableSpaceDivider = style({
   height: 1,
   flex: '1 1',

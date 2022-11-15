@@ -1,11 +1,9 @@
+import Avatar from "@components/Avatar";
 import classNames from "classnames";
-import Image from "next/image";
-import { CSSProperties, forwardRef, useContext, useEffect, useState } from "react";
+import { CSSProperties, forwardRef, useContext } from "react";
 import GlobalContext from "../../contexts/global";
 import TasksTableContext from "../../contexts/tasksTable";
 import DragZoneContext from "../DragZone/context";
-import ElementPosition from "../ElementPosition";
-import Modal from "../Modal";
 import { priorityClassNameMap, taskColorMap } from "./data";
 import * as styles from './styles.css';
 import { Props } from "./types";
@@ -17,30 +15,26 @@ const Component = forwardRef<HTMLElement, Props>(({
   isDragging,
   task,
   onMouseDown,
+  onClick,
   ...restProps
 }, ref) => {
   const { isAltVariant } = useContext(GlobalContext)
   const { usersMap } = useContext(TasksTableContext);
   const { dragZoneIsActive } = useContext(DragZoneContext);
-  const [taskIsOpen, setTaskIsOpen] = useState(false);
   const taskIdPrefix = task.id.split('-')[0];
   const taskColor = taskColorMap[taskIdPrefix as keyof typeof taskColorMap]
   const taskAssigner = usersMap[task.assignerId]
 
-  return (
-    <>
-    <Modal isOpen={taskIsOpen} onClose={() => setTaskIsOpen(false)}>
-      {taskIsOpen && <ElementPosition className={styles.taskInModal} id={task.id} />}
-    </Modal>    
+  return ( 
     <article
-      id={task.id}
-      onClickCapture={() => setTaskIsOpen(true)}
+      onClickCapture={onClick}
       onMouseDown={onMouseDown}
       ref={ref} 
       style={{
         '--taskColor': taskColor
       } as CSSProperties}
       className={classNames(
+        className,
         styles.task,
         isElevating && styles.taskVariants.isElevating,
         isDragging && styles.taskVariants.isDragging,
@@ -49,7 +43,7 @@ const Component = forwardRef<HTMLElement, Props>(({
       {...restProps}
     >
       <div className={styles.taskIndicator} />
-      <div className={styles.taskTitle}>
+      <div className={styles.taskTitle} style={{ overflow: isAltVariant ? 'visible' : 'hidden', WebkitLineClamp: isAltVariant ? 5 : 2 }}>
         {isAltVariant && (
           <>
             <span className={styles.taskNumber}>{task.id}</span>
@@ -67,12 +61,11 @@ const Component = forwardRef<HTMLElement, Props>(({
       )}
       {task.assignerId && (
         <div className={styles.taskAssigner}>
-          <Image
-            {...taskAssigner.avatar}
+          <Avatar 
             className={styles.taskAssignerAvatar}
-            width={20}
-            height={20}
-            alt={[taskAssigner.firstName, taskAssigner.lastName].join(' ')}
+            color={taskAssigner.color}
+            image={taskAssigner.avatar}
+            alt={[taskAssigner.firstName[0], taskAssigner.lastName[0]].join('')}
           />
           <span className={styles.taskAssignerName}>
             {[taskAssigner.firstName, taskAssigner.lastName].join(' ')}
@@ -108,7 +101,6 @@ const Component = forwardRef<HTMLElement, Props>(({
         </div>
       )}
     </article>    
-    </>
   )
 })
 

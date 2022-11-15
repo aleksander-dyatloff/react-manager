@@ -2,14 +2,13 @@ import { style, styleVariants } from "@vanilla-extract/css";
 import { color } from "../../styles/helpers";
 
 export const task = style({
-  position: 'absolute',
+  position: 'relative',
   fontSize: 12,
   borderRadius: 10,
   display: 'flex',
   flexDirection: 'column',
   backgroundColor: color('backgroundPrimary'),
   width: '100%',
-  height: '110px',
   overflow: 'hidden',
   transitionProperty: 'transform,box-shadow,background-color,opacity',
   transitionDuration: '200ms',
@@ -24,7 +23,7 @@ export const task = style({
 
 export const taskWrapper = style({
   position: 'relative',
-  height: '110px',
+  minHeight: '110px',
 })
 
 export const taskVariants = styleVariants({
@@ -60,6 +59,12 @@ export const taskIndicator = style({
 
 export const taskTitle = style({
   lineHeight: 1.3,
+  display: '-webkit-box',
+  WebkitBoxOrient: 'vertical',
+  maxWidth: '100%',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  marginBottom: 'auto'
 })
 
 export const taskNumber = style({
@@ -117,11 +122,13 @@ export const taskRemainingTimeText = style({
 export const taskAssigner = style({
   display: 'flex',
   alignItems: 'center',
-  margin: 'auto 0 12px',
+  margin: '12px 0',
 })
 
 export const taskAssignerName = style({
-  whiteSpace: 'nowrap',
+  display: '-webkit-box',
+  WebkitBoxOrient: 'vertical',
+  maxWidth: '100%',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
 })
@@ -141,7 +148,7 @@ export const taskPriority = style({
   position: 'absolute',
   top: 0,
   bottom: 0,
-  left: 6,
+  left: 2,
   margin: 'auto 0',
   height: 20,
 })

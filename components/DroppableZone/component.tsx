@@ -5,17 +5,8 @@ const Component: FC<Props> = ({
   render,
   onDrop = () => null,
 }) => {
-  const [dragZoneInFocus, setDragZoneInFocus] = useState(false);
   const dragZoneRef = useRef<HTMLDivElement | null>(null);
 
-  const handleMouseEnter: MouseEventHandler<HTMLElement> = () => {
-    setDragZoneInFocus(true)
-  }
-
-  const handleMouseLeave: MouseEventHandler<HTMLElement> = () => {
-    setDragZoneInFocus(false)  
-  }
-  
   useEffect(() => {
     if (!dragZoneRef.current) return;
 
@@ -32,9 +23,6 @@ const Component: FC<Props> = ({
 
   return render({
     ref: dragZoneRef,
-    onMouseEnter: handleMouseEnter,
-    onMouseLeave: handleMouseLeave,
-    inFocus: dragZoneInFocus
   })
 }
 

@@ -24,6 +24,8 @@ interface ContextProps {
   taskTypes: TaskVariant[],
   existTaskTypes: TaskVariant['id'][]
   setExistTaskTypes: (varIds: TaskUserType['id'][]) => void
+  openedTask: TaskType | null
+  openTask: (taskId: TaskType | null) => void
 }
 
 const TasksTableContext = createContext<ContextProps>({
@@ -39,6 +41,8 @@ const TasksTableContext = createContext<ContextProps>({
   taskTypes: [],
   existTaskTypes: [],
   setExistTaskTypes: () => {},
+  openedTask: null,
+  openTask: () => {},
 })
 
 export default TasksTableContext

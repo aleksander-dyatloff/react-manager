@@ -1,3 +1,4 @@
+import FloatingElementsContainer from '@components/FloatingElementsContainer';
 import TasksFilters from '@components/TasksFilters';
 import TaskType from '@interfaces/Task';
 import TasksColumn from '@interfaces/TasksColumn';
@@ -9,7 +10,6 @@ import classNames from 'classnames';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import User1Image from '../assets/users/1.png';
-import User2Image from '../assets/users/2.png';
 import User3Image from '../assets/users/3.png';
 import User4Image from '../assets/users/4.png';
 import User5Image from '../assets/users/5.png';
@@ -350,6 +350,7 @@ export default function Home() {
   const [tasks, setTasks] = useState<TaskType[]>(tasksData)
   const [closedSpaces, setClosedSpaces] = useState<TasksSpace['id'][]>([]);
   const [isDarkTheme, setDarkTheme] = useState(false);
+  const [openedTask, setOpenedTask] = useState<TaskType | null>(null);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -398,6 +399,8 @@ export default function Home() {
           taskTypes,
           existTaskTypes,
           setExistTaskTypes,
+          openedTask,
+          openTask: setOpenedTask,
         }}
         >
     <div className={classNames(styles.app)}>
@@ -460,7 +463,6 @@ export default function Home() {
       </div>
       </div>
       <TasksFilters />
-      <div>
           <TaskManager
             columns={columnsData}
             spaces={tasksSpacesData}
@@ -477,7 +479,6 @@ export default function Home() {
               else setClosedSpaces([...closedSpaces, spaceId])
             }}
           />                  
-      </div>
     </div>    
         </TasksTableContext.Provider>
     </GlobalContext.Provider>

@@ -1,8 +1,8 @@
-import { FC, Fragment } from "react";
-import DraggableItem from "../DraggableItem";
+import Modal from "@components/Modal";
+import Task from "@components/Task";
+import TasksTableContext from "@contexts/tasksTable";
+import { FC, Fragment, useContext } from "react";
 import DragZone from '../DragZone';
-import ElementPositionContainer from "../ElementPositionContainer";
-import Task from "../Task";
 import Backlog from './components/Backlog';
 import Header from './components/Header';
 import TasksSpace from './components/TasksSpace';
@@ -10,6 +10,8 @@ import * as styles from './styles.css';
 import { Props } from "./types";
 
 const Component: FC<Props> = ({ columns = [], tasks = [], spaces = [], onTasksChange, closedSpaces, toggleCloseSpace }) => {
+  const { openedTask, openTask } = useContext(TasksTableContext)
+
   const spacesData = spaces.map((space, spaceIndex) => {
     const spaceTasks = tasks.filter(task => task.spaceId === space.id);
     const prevSpaceId = spaces[spaceIndex - 1]?.id
@@ -36,30 +38,13 @@ const Component: FC<Props> = ({ columns = [], tasks = [], spaces = [], onTasksCh
     <DragZone render={(props) => (
       <section className={styles.table} {...props}>
         <Header tasks={tasks} columns={columns} />
-        <ElementPositionContainer     
+        <div     
           className={styles.tableBody}
         >
           <Backlog
             tasks={tasks}
             onTasksChange={onTasksChange}
           />
-          {tasks
-            .map(task => (
-            <DraggableItem
-              value={task}
-              key={task.id}
-              render={({ isDragging, ...props}) => (
-                <Task
-                  isElevating={Boolean(
-                    closedSpaces.find(spaceId => spaceId === task.spaceId) ?? isDragging
-                  )}
-                  isDragging={isDragging}
-                  task={task}
-                  {...props}
-                />
-              )}
-            />
-          ))}          
           {spacesData.map(({ space, prevSpaceMaxTasks, spaceMaxTasks }, spaceIndex) => (
             <Fragment key={space.id}>
               <TasksSpace
@@ -81,7 +66,12 @@ const Component: FC<Props> = ({ columns = [], tasks = [], spaces = [], onTasksCh
               )}
             </Fragment>
           ))}
-        </ElementPositionContainer>
+          <Modal isOpen={Boolean(openedTask)} onClose={() => openTask(null)}>
+            {openedTask && (
+              <Task isElevating className={styles.taskInModal} task={openedTask} />            
+            )}
+          </Modal>
+        </div>
       </section>
     )}
     />

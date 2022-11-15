@@ -45,7 +45,7 @@ const Component: FC<Props> = () => {
             </label>
           ))}       
         </Spoiler>
-        <Spoiler title="Groups">
+        <Spoiler title="Departments">
           {taskTypes.map(type => (
             <label key={type.id} className={classNames(styles.user, !existTaskTypes.find(tp => tp === type.id) && styles.userDisabled)}>
               <input

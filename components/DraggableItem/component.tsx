@@ -6,7 +6,6 @@ import { Props } from "./types";
 const Component: FC<Props> = ({ render, value }) => {
   const [isDragging, setIsDragging] = useState(false);
   const dragItemRef = useRef<HTMLElement | null>(null);
-  const { ref: relativeContainerRef } = useContext(ElementPositionContainerContext);
   const { setDragZoneIsActive } = useContext(DragZoneContext)
 
   const handleMouseDown: MouseEventHandler<HTMLElement> = (startEvent) => {
@@ -20,6 +19,7 @@ const Component: FC<Props> = ({ render, value }) => {
     const dragItemRect = dragItemRef.current.getBoundingClientRect();
 
     dragItemRef.current.style.position = 'fixed';
+    dragItemRef.current.style.pointerEvents = 'none';
     dragItemRef.current.style.width = dragItemRect.width / 1.05 + 'px';
     dragItemRef.current.style.height = dragItemRect.height / 1.05 + 'px';
     dragItemRef.current.style.top = dragItemRect.y + 2.5 + 'px';
@@ -49,6 +49,12 @@ const Component: FC<Props> = ({ render, value }) => {
 
       const mouseUpTime = Date.now();
 
+      if (!dragItemRef.current) return;
+      dragItemRef.current.style.position = 'relative';
+      dragItemRef.current.style.pointerEvents = 'visible';
+      dragItemRef.current.style.removeProperty('top');
+      dragItemRef.current.style.removeProperty('left');
+
       if (mouseUpTime - mouseDownTime < 120) {
         if (!dragItemRef.current) return
 
@@ -64,17 +70,9 @@ const Component: FC<Props> = ({ render, value }) => {
 
       const deepElement = document.elementFromPoint(endEvent.clientX, endEvent.clientY);
 
-      if (!deepElement || !dragItemRef.current || !relativeContainerRef.current) return;
+      if (!deepElement || !dragItemRef.current) return;
 
       const dragItemRect = dragItemRef.current.getBoundingClientRect();
-      const relativeContainerRect = relativeContainerRef.current.getBoundingClientRect();
-
-      dragItemRef.current.style.position = 'absolute';
-      dragItemRef.current.style.width = dragItemRect.width / 1.05 + 'px';
-      dragItemRef.current.style.height = dragItemRect.height / 1.05 + 'px';
-      dragItemRef.current.style.top = dragItemRect.y - relativeContainerRect.y + 2.5 + 'px';
-      dragItemRef.current.style.left = dragItemRect.x - relativeContainerRect.x + 4 + 'px';
-      dragItemRef.current.style.zIndex = '20';
 
       const event = new CustomEvent('drop', { detail: {
         value,

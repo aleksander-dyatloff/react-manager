@@ -31,7 +31,6 @@ export const icon = style({
   width: '1rem',
   height: '1rem',
   marginLeft: 6,
-  color: 'gray',
 })
 
 export const filterTitle = style({

@@ -3,12 +3,14 @@ import { color } from "../../../../styles/helpers";
 
 export const tableSpace = style({
   display: 'flex',
+  position: 'relative',
 })
 
 export const tableSpaceStickerWrapper = style({
+  display: 'flex',
+  flexDirection: 'column',
   zIndex: 10,
   minHeight: 112,
-  width: 24,
   margin: '8px',
 })
 
@@ -20,7 +22,14 @@ export const tableSpaceStickerWrapperVariant = styleVariants({
 })
 
 export const closestTasks = style({
-  position: 'relative',
+  maxWidth: 0,
+  maxHeight: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  position: 'absolute',
+  top: 0,
+  bottom: 0,
+  margin: 'auto 0',
 })
 
 export const spaceTitle = style({
@@ -31,12 +40,10 @@ export const spaceTitle = style({
 })
 
 export const tableSpaceSticker = style({
-  position: 'absolute',
   padding: '10px 0',
   backgroundColor: color('backgroundPrimary'),
   borderRadius: 10,
   fontSize: 14,
-  height: '100%',
   lineHeight: '24px',
   fontWeight: 500,
   textOrientation: 'mixed',
@@ -70,12 +77,24 @@ export const columnBody = style({
 
 export const tableTask = style({
   width: '100%',
-  height: '110px',
+  minHeight: '110px',
   marginBottom: 8,
 
   ':last-of-type': {
     marginBottom: 0,
   },
+
+  selectors: {
+    [`${closestTasks} &`]: {
+      width: 160,
+    }
+  }
+})
+
+export const tableSpaceStickerContent = style({
+  flex: '1 1',
+  display: 'flex',
+  flexDirection: 'column',
 })
 
 export const tableColumnDivider = style({
