@@ -1,5 +1,5 @@
-import { style, styleVariants } from "@vanilla-extract/css";
-import { color } from "../../../../styles/helpers";
+import { style, styleVariants } from '@vanilla-extract/css'
+import { color } from '../../../../styles/helpers'
 
 export const tableSpace = style({
   display: 'flex',
@@ -12,13 +12,15 @@ export const tableSpaceStickerWrapper = style({
   zIndex: 10,
   minHeight: 112,
   margin: '8px',
+  border: 'none',
+  padding: 0,
 })
 
 export const tableSpaceStickerWrapperVariant = styleVariants({
   closed: [tableSpaceStickerWrapper, {
     marginLeft: 0,
     marginRight: 16,
-  }]
+  }],
 })
 
 export const closestTasks = style({
@@ -56,7 +58,7 @@ export const tableSpaceSticker = style({
   ':hover': {
     transform: 'scale(1.05)',
     boxShadow: '0 4px 6px 1px rgba(56, 56, 56, 0.2)',
-  }
+  },
 })
 
 export const tableSpaceStickerVariant = styleVariants({
@@ -65,12 +67,12 @@ export const tableSpaceStickerVariant = styleVariants({
     borderBottomLeftRadius: 0,
     boxShadow: '0 4px 6px 1px rgba(56, 56, 56, 0.2)',
     backgroundColor: color('backgroundSecondary'),
-  }]
+  }],
 })
 
 export const columnBody = style({
   padding: '8px',
-  width: '180px', 
+  width: '180px',
   display: 'flex',
   flexDirection: 'column',
 })
@@ -80,15 +82,9 @@ export const tableTask = style({
   minHeight: '110px',
   marginBottom: 8,
 
-  ':last-of-type': {
-    marginBottom: 0,
-  },
+  ':last-of-type': { marginBottom: 0 },
 
-  selectors: {
-    [`${closestTasks} &`]: {
-      width: 160,
-    }
-  }
+  selectors: { [`${closestTasks} &`]: { width: 160 } },
 })
 
 export const tableSpaceStickerContent = style({

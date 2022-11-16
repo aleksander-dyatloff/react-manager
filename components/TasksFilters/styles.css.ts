@@ -1,5 +1,5 @@
-import { color } from "@styles/helpers"
-import { style } from "@vanilla-extract/css"
+import { color } from '@styles/helpers'
+import { style } from '@vanilla-extract/css'
 
 export const user = style({
   userSelect: 'none',
@@ -14,18 +14,12 @@ export const user = style({
   transitionDuration: '120ms',
   borderRadius: 10,
 
-  ':hover': {
-    backgroundColor: color('fontColor', 0.1),
-  }
+  ':hover': { backgroundColor: color('fontColor', 0.1) },
 })
 
-export const userCheckbox = style({
-  display: 'none',
-})
+export const userCheckbox = style({ display: 'none' })
 
-export const searchField = style({
-  marginBottom: 10,
-})
+export const searchField = style({ marginBottom: 10 })
 
 export const icon = style({
   width: '1rem',
@@ -40,18 +34,12 @@ export const filterTitle = style({
   textOverflow: 'ellipsis',
 })
 
-export const userDisabled = style({
-  color: 'gray',
-})
+export const userDisabled = style({ color: 'gray' })
 
 export const avatar = style({
   borderRadius: '50%',
   marginRight: 8,
-  selectors: {
-    [`${userDisabled} &`]: {
-      filter: 'grayscale(100%)',
-    },
-  }
+  selectors: { [`${userDisabled} &`]: { filter: 'grayscale(100%)' } },
 })
 
 export const tasksFilterHeader = style({
