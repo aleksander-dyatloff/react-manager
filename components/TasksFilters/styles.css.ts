@@ -14,7 +14,12 @@ export const user = style({
   transitionDuration: '120ms',
   borderRadius: 10,
 
-  ':hover': { backgroundColor: color('fontColor', 0.1) },
+  ':hover': {
+    backgroundColor: color(
+      'fontColor',
+      0.1,
+    ),
+  },
 })
 
 export const userCheckbox = style({ display: 'none' })
@@ -51,7 +56,10 @@ export const tasksFilterHeader = style({
   display: 'flex',
   flexDirection: 'column',
   zIndex: 99,
-  backgroundColor: color('backgroundSecondary', 0.7),
+  backgroundColor: color(
+    'backgroundSecondary',
+    0.7,
+  ),
   backdropFilter: 'blur(8px) saturate(180%)',
 })
 

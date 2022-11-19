@@ -35,7 +35,27 @@
       }
     ],
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
-    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
-    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }]
-  }
+    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    "object-property-newline": ["warn", {
+      "allowAllPropertiesOnSameLine": false
+    }],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.story.*"
+        ],
+        "peerDependencies": true
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.css.ts"],
+      "rules": {
+        "import/prefer-default-export": ["off"]
+      }
+    }
+  ]
 }
