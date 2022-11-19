@@ -1,4 +1,4 @@
-const path = require('path');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const config = {
   "stories": [
@@ -15,21 +15,12 @@ const config = {
   },
   webpackFinal: async (config) => {
     if (config.resolve) {
-      config.resolve.alias = {
-        ...config.resolve?.alias,
-        "@root": path.resolve(__dirname, "../"),
-        "@components": path.resolve(__dirname, "../components"),
-        "@utils": path.resolve(__dirname, "../utils"),
-        "@pages": path.resolve(__dirname, "../pages"),
-        "@icons": path.resolve(__dirname, "../icons"),
-        "@assets": path.resolve(__dirname, "../assets"),
-        "@styles": path.resolve(__dirname, "../styles"),
-        "@store": path.resolve(__dirname, "../store"),
-        "@api": path.resolve(__dirname, "../api"),
-        "@constants": path.resolve(__dirname, "../constants"),
-        "@hooks": path.resolve(__dirname, "../hooks"),
-        "@shared": path.resolve(__dirname, "../shared"),
-      };    
+      config.resolve.plugins = [
+        ...(config.resolve.plugins || []),
+        new TsconfigPathsPlugin({
+          extensions: config.resolve.extensions,
+        }),
+      ]  
     }
 
     return config;
